@@ -25,7 +25,12 @@ void AddElementToBuffer(struct Buffer b, int dataPoint)
 {
     if (b.elementsInQueue == b.capacity)
     {
-        DeleteFromBuffer(b);
+        for (int i = 1; i < b.elementsInQueue; i++)
+        {
+            b.queue[i - 1] = b.queue[i];
+        }
+        b.elementsInQueue--;
+
         b.queue[-1] = dataPoint;
         b.elementsInQueue++;
     }
@@ -38,18 +43,21 @@ void AddElementToBuffer(struct Buffer b, int dataPoint)
 
 int GetFirstFromBuffer(struct Buffer b)
 {
-    int firstElement = b.queue[0];
-
-    DeleteFromBuffer(b);
-
-    return firstElement;
-}
-
-void DeleteFromBuffer(struct Buffer b)
-{
-    for (int i = 1; i < b.elementsInQueue; i++)
+    if (b.elementsInQueue > 0)
     {
-        b.queue[i - 1] = b.queue[i];
+        int firstElement = b.queue[0];
+
+        for (int i = 1; i < b.elementsInQueue; i++)
+        {
+            b.queue[i - 1] = b.queue[i];
+        }
+        b.elementsInQueue--;
+
+        return firstElement;
     }
-    b.elementsInQueue--;
+    else
+    {
+        return 2147483647; //returns the max value allowed for int to indicate that the buffer is empty (essentially an error message)
+    }
+    
 }
