@@ -49,7 +49,7 @@ void DeleteFromBuffer(struct Buffer b)
 {
     for (int i = 1; i < b.elementsInQueue; i++)
     {
-        b.queue[0] = b.queue[i];
+        b.queue[i - 1] = b.queue[i];
     }
     b.elementsInQueue--;
 }
