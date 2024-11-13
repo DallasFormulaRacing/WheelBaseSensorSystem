@@ -1,3 +1,10 @@
+/*
+** In order to use the data buffer functionality, include this header file in your C program
+*/
+
+
+#include <stdlib.h>
+
 //create a struct for the buffer
 struct Buffer
 {
