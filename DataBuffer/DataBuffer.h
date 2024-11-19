@@ -75,7 +75,7 @@ int GetFirstFromBuffer(struct Buffer b)
     }
     else
     {
-        return 2147483647; //returns the max value allowed for int to indicate that the buffer is empty (essentially an error message)
+        return -1; //returns -1 to indicate an error
     }
     
 }
