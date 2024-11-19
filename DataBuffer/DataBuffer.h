@@ -75,7 +75,7 @@ int GetFirstFromBuffer(struct Buffer b)
     }
     else
     {
-        return -1; //returns -1 to indicate an error
+        return -1; //returns -1 to indicate an error (since all expected values should be positive)
     }
     
 }
