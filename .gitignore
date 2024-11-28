@@ -1,0 +1,28 @@
+# META 
+*.DS_Store
+.metadata
+*.settings/*
+.settings/
+
+# USER FILE NEGATIONS
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/c_cpp_properties.json
+
+# BUILD 
+*/Debug/*
+*.prefs
+
+
+# TEMP
+*.xml
+*.list
+*.mk
+*.elf
+*.o
+*.d
+*.cyclo
+*.dbc
+
+# NOTE: git rm --cached -r CM4/.settings || git rm --cached -r CM7/.settings
