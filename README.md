@@ -1,8 +1,7 @@
 # The Wheel Base Sensor System Repository
 
 ![CircleCI](https://img.shields.io/circleci/build/github/DallasFormulaRacing/WheelBaseSensorSystem?style=flat-square)
-![Static Badge](https://img.shields.io/badge/fsae_season-2026-brightgreen?style=flat-square&logoColor=8A2BE2&color=8A2BE2)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/DallasFormulaRacing/WheelBaseSensorSystem/main?style=flat-square) ![Static Badge](https://img.shields.io/badge/H7-5e5e5e?style=flat-square&logo=stmicroelectronics)
+![Static Badge](https://img.shields.io/badge/fsae_season-2026-brightgreen?style=flat-square&logoColor=8A2BE2&color=8A2BE2) ![Static Badge](https://img.shields.io/badge/deadline-dec_2025-brightgreen?style=flat-square&color=655991) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/DallasFormulaRacing/WheelBaseSensorSystem/main?style=flat-square) ![Static Badge](https://img.shields.io/badge/H7-5e5e5e?style=flat-square&logo=stmicroelectronics)
 
 ## Overview
 
@@ -17,3 +16,36 @@ There exist two types of sensors on the WBSS: integrated sensors and modular sen
 Integrated sensors are permanent components on the custom PCB and remain on the car during competitions. Since there are 4 wheels, there are 4 copies of the PCB at each base, thus there are 4 copies of each sensor.
 
 Modular sensors are easily removable and will be removed prior to a competition. Modular sensors are independent of one another.
+
+### Integrated Sensors (x4)
+
+| Sensor Name               | Signal  | Protocol | Location   |
+| ------------------------- | ------- | -------- | ---------- |
+| Wheel Speed               | Digital | ?        | Base       |
+| Linear Pots               | Analog  | ?        | Suspension |
+| Differential Pressure     | Digital | ?        | Tire       |
+| Global Positioning System | Digital | ?        | Chassis    |
+| Accelerometer             | ?       | ?        | Base       |
+
+### Modular Sensors
+
+| Sensor Name               | Signal  | Protocol | Location      |
+| ------------------------- | ------- | -------- | ------------- |
+| Tire Temperature          | Digital | ?        | Wheel Base x4 |
+| Absolute Pressure Sensors | ?       | ?        | Nose          |
+
+## Directory Structure
+
+Subject to Change
+
+## Things You Need...
+
+### On Your Machine
+
+- Git
+- Github account
+- STM32CubeIDE
+- CMAKE
+- Arm compiler
+- STLink
+- OpenOCD
