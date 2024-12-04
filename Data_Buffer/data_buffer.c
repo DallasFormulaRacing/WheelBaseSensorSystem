@@ -3,11 +3,11 @@
 
 //this function creates a new buffer of size bufferSize and returns the buffer
 //this specific implementation allows the size of the buffer to vary for each buffer created
-Buffer CreateNewBuffer(int bufferSize)
+Buffer_t CreateNewBuffer(int bufferSize)
 {
-    Buffer buffer;
+    Buffer_t buffer;
     
-    double array[bufferSize];
+    int array[bufferSize];
     
     buffer.queue = array;
     buffer.capacity = bufferSize;
@@ -18,7 +18,7 @@ Buffer CreateNewBuffer(int bufferSize)
 
 
 //this function adds a new data point to the end of the buffer queue, removing the first data point in the queue if the buffer is full
-void Enqueue(Buffer* b, double dataPoint)
+void Enqueue(Buffer_t* b, int dataPoint)
 {
     if (b->elementsInQueue == b->capacity)
     {
@@ -41,11 +41,12 @@ void Enqueue(Buffer* b, double dataPoint)
 
 //this function returns the first data point in the buffer and then removes it from the buffer, assuming the buffer is not empty
 //returns -1 if the buffer is empty as an error indicator
-double Dequeue(Buffer* b)
+int Dequeue(Buffer_t* b)
 {
+    int* msg;
     if (b->elementsInQueue > 0)
     {
-        double firstElement = b->queue[0];
+        int firstElement = b->queue[0];
 
         for (int i = 1; i < b->elementsInQueue; i++)
         {
@@ -53,10 +54,10 @@ double Dequeue(Buffer* b)
         }
         b->elementsInQueue--;
 
-        return firstElement;
+        msg = firstElement;
     }
     else
     {
-        return -1; //returns -1 to indicate an error (since all expected values should be positive)
+        msg = DEQUEUE_FAIL;
     }
 }
