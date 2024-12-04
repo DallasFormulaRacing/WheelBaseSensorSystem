@@ -52,7 +52,7 @@ void AddElementToBuffer(struct Buffer b, int dataPoint)
 
 //this function returns the first data point in the buffer and then removes it from the buffer, assuming the buffer is not empty
 //returns the max value for int if the buffer is empty as an error indicator
-int GetFirstFromBuffer(struct Buffer b)
+int Dequeue(struct Buffer b)
 {
     if (b.elementsInQueue > 0)
     {
