@@ -18,40 +18,40 @@ Buffer CreateNewBuffer(int bufferSize)
 
 
 //this function adds a new data point to the end of the buffer queue, removing the first data point in the queue if the buffer is full
-void Enqueue(Buffer b, int dataPoint)
+void Enqueue(Buffer* b, int dataPoint)
 {
-    if (b.elementsInQueue == b.capacity)
+    if (b->elementsInQueue == b->capacity)
     {
-        for (int i = 1; i < b.elementsInQueue; i++)
+        for (int i = 1; i < b->elementsInQueue; i++)
         {
-            b.queue[i - 1] = b.queue[i];
+            b->queue[i - 1] = b->queue[i];
         }
-        b.elementsInQueue--;
+        b->elementsInQueue--;
 
-        b.queue[b.elementsInQueue] = dataPoint;
-        b.elementsInQueue++;
+        b->queue[b->elementsInQueue] = dataPoint;
+        b->elementsInQueue++;
     }
     else
     {
-        b.queue[b.elementsInQueue] = dataPoint;
-        b.elementsInQueue++;
+        b->queue[b->elementsInQueue] = dataPoint;
+        b->elementsInQueue++;
     }
 }
 
 
 //this function returns the first data point in the buffer and then removes it from the buffer, assuming the buffer is not empty
 //returns the max value for int if the buffer is empty as an error indicator
-int Dequeue(Buffer b)
+int Dequeue(Buffer* b)
 {
-    if (b.elementsInQueue > 0)
+    if (b->elementsInQueue > 0)
     {
-        int firstElement = b.queue[0];
+        int firstElement = b->queue[0];
 
-        for (int i = 1; i < b.elementsInQueue; i++)
+        for (int i = 1; i < b->elementsInQueue; i++)
         {
-            b.queue[i - 1] = b.queue[i];
+            b->queue[i - 1] = b->queue[i];
         }
-        b.elementsInQueue--;
+        b->elementsInQueue--;
 
         return firstElement;
     }
