@@ -28,13 +28,6 @@ struct Buffer CreateNewBuffer(int bufferSize)
 }
 
 
-//this function returns the size of the specified buffer
-int GetBufferSize(struct Buffer b)
-{
-    return b.elementsInQueue;
-}
-
-
 //this function adds a new data point to the end of the buffer queue, removing the first data point in the queue if the buffer is full
 void AddElementToBuffer(struct Buffer b, int dataPoint)
 {
