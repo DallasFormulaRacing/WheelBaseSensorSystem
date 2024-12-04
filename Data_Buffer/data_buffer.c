@@ -9,7 +9,9 @@ Buffer CreateNewBuffer(int bufferSize)
 {
     Buffer buffer;
     
-    buffer.queue = (int*)malloc(sizeof(int) * bufferSize);
+    int array[bufferSize];
+    
+    buffer.queue = array;
     buffer.capacity = bufferSize;
     buffer.elementsInQueue = 0;
 
