@@ -29,7 +29,7 @@ struct Buffer CreateNewBuffer(int bufferSize)
 
 
 //this function adds a new data point to the end of the buffer queue, removing the first data point in the queue if the buffer is full
-void AddElementToBuffer(struct Buffer b, int dataPoint)
+void Enqueue(struct Buffer b, int dataPoint)
 {
     if (b.elementsInQueue == b.capacity)
     {
