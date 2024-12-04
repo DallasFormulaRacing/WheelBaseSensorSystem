@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdint.h>
 #include "data_buffer.h"
 
 

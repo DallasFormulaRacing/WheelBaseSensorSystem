@@ -1,3 +1,6 @@
+#ifndef DATA_BUFFER_H
+#define DATA_BUFFER_H
+
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -22,3 +25,5 @@ void Enqueue(Buffer* b, int dataPoint);
 //this function returns the first data point in the buffer and then removes it from the buffer, assuming the buffer is not empty
 //returns the max value for int if the buffer is empty as an error indicator
 int Dequeue(Buffer* b);
+
+#endif
