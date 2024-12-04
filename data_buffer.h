@@ -4,6 +4,7 @@
 
 
 #include <stdlib.h>
+#include <stdint.h>
 
 //create a struct for the buffer
 struct Buffer
