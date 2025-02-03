@@ -35,7 +35,36 @@ Modular sensors are easily removable and will be removed prior to a competition.
 | Absolute Pressure Sensors | ?       | ?        | Nose          |
 
 ## Directory Structure
+```
+.
+├── CM4
+│   └── Core
+│       ├── Inc
+│       ├── Src
+│       └── Startup
+├── CM7
+│   └── Core
+│       ├── Inc
+│       ├── Src
+│       └── Startup
+├── Common
+│   └── Src
+└── Drivers
+    ├── BSP
+    │   └── STM32H7xx_Nucleo
+    ├── CMSIS
+    │   ├── Device
+    │   │   └── ST
+    │   │       └── STM32H7xx
+    │   │           └── Include
+    │   └── Include
+    └── STM32H7xx_HAL_Driver
+        ├── Inc
+        │   └── Legacy
+        └── Src
 
+26 directories
+```
 Subject to Change
 
 ## Things You Need...
