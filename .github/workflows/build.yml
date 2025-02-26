@@ -1,0 +1,30 @@
+name: Build STM32H7 Project
+
+on:
+  push:
+    branches: ["main", "workflows"]
+  pull_request:
+    branches: ["main", "workflows"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Install arm gcc toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi
+
+      - name: Make
+        run: make
+ 
+# to do : integrate cmake
+        # upload firmware and integrate with unit tests
+        # uses: actions/upload-artifact@v2
+
+
+
