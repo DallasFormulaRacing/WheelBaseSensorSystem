@@ -13,7 +13,8 @@
 # BUILD 
 */Debug/*
 *.prefs
-
+/build-CM4/*
+/build-CM7/*
 
 # TEMP
 *.xml

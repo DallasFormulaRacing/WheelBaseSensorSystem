@@ -19,7 +19,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gcc-arm-none-eabi
 
-      - name: Make
+      - name: Makeclean
+        run: make clean
+
+      - name: make
         run: make
  
 # to do : integrate cmake
