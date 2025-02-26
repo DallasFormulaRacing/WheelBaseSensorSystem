@@ -2,9 +2,9 @@ name: Build STM32H7 Project
 
 on:
   push:
-    branches: ["main", "workflows"]
+    branches: ["main", "feature/github-actions"]
   pull_request:
-    branches: ["main", "workflows"]
+    branches: ["main", "feature/github-actions"]
 
 jobs:
   build:
