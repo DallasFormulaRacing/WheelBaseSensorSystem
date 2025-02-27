@@ -18,7 +18,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            gcc-arm-none-eabi cmake ninja-build make 
+            gcc-arm-none-eabi binutils-arm-none-eabi \
+            libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
 
       - name: Configure Cmake
         run: cmake -B build -G Ninja .
