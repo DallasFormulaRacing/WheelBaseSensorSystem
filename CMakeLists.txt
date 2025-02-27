@@ -21,7 +21,6 @@ set(CMAKE_PROJECT_NAME WheelBaseSensorSystem)
 project(${CMAKE_PROJECT_NAME})
 
 
-
 # Include external project file
 include("mx-generated.cmake")
 

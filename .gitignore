@@ -28,9 +28,9 @@
 *.map
 *.out
 
-# *.log
+*.log
 # *.launch
-# *.bak
+*.bak
 # *.tmp
 # *.icf
 
