@@ -8,17 +8,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Install arm gcc toolchain
+      - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommendations \
-            gcc-arm-none-eabi cmake ninja-build
+          sudo apt-get install -y --no-install-recommends \
+            gcc-arm-none-eabi binutils-arm-none-eabi \
+            libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
 
       - name: Configure Cmake
         run: cmake -B build -G Ninja .
