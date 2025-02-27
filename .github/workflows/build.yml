@@ -27,7 +27,7 @@ jobs:
         run: cmake --build build --parallel 
 
       - name: Upload Firmware Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: firmware-binaries
           path: |
