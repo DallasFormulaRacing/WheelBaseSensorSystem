@@ -1,62 +1,90 @@
 {
     "version": "2.0.0",
-    "windows": {
-        "options": {
-            "shell": {
-                "executable": "cmd.exe",
-                "args": ["/d", "/c"]
-            }
-        }
-    },
     "tasks": [
         {
+            "label": "Build All",
             "type": "shell",
-            "label": "CubeProg: Flash project (SWD)",
+            "command": "cmake --build build --target WheelBaseSensorSystem_CM4 && cmake --build build --target WheelBaseSensorSystem_CM7",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build both cores"
+        },
+        {
+            "label": "Build CM4",
+            "type": "shell",
+            "command": "cmake --build build --target WheelBaseSensorSystem_CM4",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build CM4 core"
+        },
+        {
+            "label": "Build CM7",
+            "type": "shell",
+            "command": "cmake --build build --target WheelBaseSensorSystem_CM7",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build CM7 core"
+        },
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "rm -rf build && mkdir -p build && cmake -B build .",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Perform a clean build"
+        },
+        {
+            "label": "Flash CM4",
+            "type": "shell",
             "command": "STM32_Programmer_CLI",
             "args": [
                 "--connect",
                 "port=swd",
                 "--download",
-                "${command:cmake.launchTargetPath}",
-                // Let CMake extension decide executable: "${command:cmake.launchTargetPath}",
-                "-hardRst", // Hardware reset - if rst pin is connected
-                "-rst", // Software reset (backup)
-                "--start" // Start execution
+                "${workspaceFolder}/build/CM4/WheelBaseSensorSystem_CM4.elf",
+                "-hardRst",
+                "-rst",
+                "--start"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build + Flash",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "CMake: clean rebuild",
-                "CubeProg: Flash project (SWD)",
-            ]
-        },
-                {
-            "type": "cmake",
-            "label": "CMake: clean rebuild",
-            "command": "cleanRebuild",
-            "targets": [
-                "all"
-            ],
-            "preset": "${command:cmake.activeBuildPresetName}",
             "group": "build",
             "problemMatcher": [],
-            "detail": "CMake template clean rebuild task"
+            "detail": "Flash the CM4 binary to the STM32H755"
         },
         {
+            "label": "Flash CM7",
             "type": "shell",
-            "label": "CubeProg: List all available communication interfaces",
+            "command": "STM32_Programmer_CLI",
+            "args": [
+                "--connect",
+                "port=swd",
+                "--download",
+                "${workspaceFolder}/build/CM7/WheelBaseSensorSystem_CM7.elf",
+                "-hardRst",
+                "-rst",
+                "--start"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Flashe the CM7 binary to the STM32H755"
+        },
+        {
+            "label": "List Available ST-Link Interfaces",
+            "type": "shell",
             "command": "STM32_Programmer_CLI",
             "args": ["--list"],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "detail": "List all available debugging interfaces"
         }
     ]
 }

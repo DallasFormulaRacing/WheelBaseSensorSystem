@@ -406,6 +406,13 @@ void SystemCoreClockUpdate (void)
 #endif /* CORE_CM4 */
 }
 
+__attribute__((weak)) void ExitRun0Mode(void) {
+    /* Ensure CM4 exits STOP mode (example implementation) */
+    PWR->CR1 &= ~PWR_CR1_LPDS;  // Clear Low-Power Run Mode bit
+    __DSB();
+    __ISB();
+}
+
 
 /**
   * @}

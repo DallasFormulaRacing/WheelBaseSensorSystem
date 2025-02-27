@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main", "feature/github-actions"]
   pull_request:
-    branches: ["main", "feature/github-actions"]
+    branches: ["main"]
 
 jobs:
   build:
@@ -17,17 +17,22 @@ jobs:
       - name: Install arm gcc toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi
+          sudo apt-get install -y --no-install-recommendations \
+            gcc-arm-none-eabi cmake ninja-build
 
-      - name: Makeclean
-        run: make clean
+      - name: Configure Cmake
+        run: cmake -B build -G Ninja .
 
-      - name: make
-        run: make
- 
-# to do : integrate cmake
-        # upload firmware and integrate with unit tests
-        # uses: actions/upload-artifact@v2
+      - name: Build
+        run: cmake --build build --parallel 
+
+      - name: Upload Firmware Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: firmware-binaries
+          path: |
+            build/CM4/WheelBaseSensorSystem_CM4.elf
+            build/CM7/WheelBaseSensorSystem_CM7.elf
 
 
 
