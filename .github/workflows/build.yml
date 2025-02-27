@@ -32,8 +32,8 @@ jobs:
         with:
           name: firmware-binaries
           path: |
-            build/CM4/WheelBaseSensorSystem_CM4.elf
-            build/CM7/WheelBaseSensorSystem_CM7.elf
+            CM4/build/WheelBaseSensorSystem_CM4.elf
+            CM7/build/WheelBaseSensorSystem_CM7.elf
 
 
 
