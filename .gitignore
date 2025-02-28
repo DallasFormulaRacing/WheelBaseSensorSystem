@@ -13,16 +13,27 @@
 # BUILD 
 */Debug/*
 *.prefs
-
+/CM4/build/*
+/CM7/build/*
+/build/*
 
 # TEMP
-*.xml
-*.list
-*.mk
-*.elf
 *.o
+*.obj
 *.d
-*.cyclo
-*.dbc
+*.lst
+*.elf
+*.bin
+*.hex
+*.map
+*.out
+
+*.log
+# *.launch
+*.bak
+# *.tmp
+# *.icf
+
+
 
 # NOTE: git rm --cached -r CM4/.settings || git rm --cached -r CM7/.settings

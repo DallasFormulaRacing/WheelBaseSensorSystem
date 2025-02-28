@@ -1,0 +1,39 @@
+name: Build STM32H7 Project
+
+on:
+  push:
+    branches: ["main", "feature/github-actions"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            gcc-arm-none-eabi binutils-arm-none-eabi \
+            libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
+
+      - name: Configure Cmake
+        run: cmake -B build -G Ninja .
+
+      - name: Build
+        run: cmake --build build --parallel 
+
+      - name: Upload Firmware Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-binaries
+          path: |
+            CM4/build/WheelBaseSensorSystem_CM4.elf
+            CM7/build/WheelBaseSensorSystem_CM7.elf
+
+
+
