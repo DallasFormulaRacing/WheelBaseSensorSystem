@@ -79,6 +79,18 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined libraries
 )
 
+add_custom_command(
+    OUTPUT ${CMAKE_BINARY_DIR}/WheelBaseSensorSystem_CM4.bin
+    COMMAND arm-none-eabi-objcopy -O binary 
+            ${CMAKE_BINARY_DIR}/WheelBaseSensorSystem_CM4.elf 
+            ${CMAKE_BINARY_DIR}/WheelBaseSensorSystem_CM4.bin
+    DEPENDS ${CMAKE_BINARY_DIR}/WheelBaseSensorSystem_CM4.elf
+    COMMENT "Generating binary file for flashing..."
+)
+
+add_custom_target(cm4_bin ALL DEPENDS ${CMAKE_BINARY_DIR}/WheelBaseSensorSystem_CM4.bin)
+
+
 # Validate that STM32CubeMX code is compatible with C standard
 if(CMAKE_C_STANDARD LESS 11)
     message(ERROR "Generated code requires C11 or higher")
