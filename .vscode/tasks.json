@@ -5,48 +5,23 @@
         {
             "label": "Build All",
             "type": "shell",
-            "command": "cmake --build build --target WheelBaseSensorSystem_CM4 && cmake --build build --target WheelBaseSensorSystem_CM7",
+            "osx": { 
+                "command": "cmake --build ${workspaceFolder}/build --parallel 10" //change --parallel 10 with your core count
+            },
+            "linux": {
+                "command": "cmake --build ${workspaceFolder}/build --parallel $(nproc)"
+            },
+            "windows": {
+                "command": "cmake --build ${workspaceFolder}\\build --parallel %NUMBER_OF_PROCESSORS%"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "detail": "Build both cores"
         },
-
-
-
-        // {
-        //     "label": "Build CM4",
-        //     "type": "shell",
-        //     "command": "cmake --build build --target WheelBaseSensorSystem_CM4",
-        //     "group": {
-        //         "kind": "build",
-        //         "isDefault": false
-        //     },
-        //     "problemMatcher": [
-        //         "$gcc"
-        //     ],
-        //     "detail": "Build CM4 core"
-        // },
-
-
-
-        // {
-        //     "label": "Build CM7",
-        //     "type": "shell",
-        //     "command": "cmake --build build --target WheelBaseSensorSystem_CM7",
-        //     "group": {
-        //         "kind": "build",
-        //         "isDefault": false
-        //     },
-        //     "problemMatcher": [
-        //         "$gcc"
-        //     ],
-        //     "detail": "Build CM7 core"
-        // },
+        
 
 
 
@@ -119,11 +94,11 @@
                 "erase"
             ],
             "problemMatcher": [],
-            "detail": "Erase all firmware DANGER"
+            "detail": "FLASH CM4 AFTER THIS"
         },
 
         {
-            "label": "Run All Tasks CM7",
+            "label": "Run All CM7",
             "type": "shell",
             "dependsOn": [
                 "Clean Build",
@@ -139,6 +114,7 @@
             "problemMatcher": []
         }
 
+        //openocd
 
     ]
 }

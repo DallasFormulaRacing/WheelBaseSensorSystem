@@ -153,7 +153,7 @@ Error_Handler();
 
 
       HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_SET);
-      HAL_Delay(80);
+      HAL_Delay(80); 
       HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_RESET);
       //
 
