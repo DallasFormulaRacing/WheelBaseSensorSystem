@@ -1,30 +1,27 @@
 {
     "version": "2.0.0",
     "tasks": [
-
         {
             "label": "Build All",
             "type": "shell",
-            "osx": { 
+            "osx": {
                 "command": "cmake --build ${workspaceFolder}/build --parallel 10" //change --parallel 10 with your core count
             },
             "linux": {
                 "command": "cmake --build ${workspaceFolder}/build --parallel $(nproc)"
             },
             "windows": {
-                "command": "cmake --build ${workspaceFolder}\\build --parallel %NUMBER_OF_PROCESSORS%"
+                "command": "cmake --build build --target WheelBaseSensorSystem_CM4 WheelBaseSensorSystem_CM7 --parallel",
             },
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
-            "problemMatcher": ["$gcc"],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "detail": "Build both cores"
         },
-        
-
-
-
         {
             "label": "Clean Build",
             "type": "shell",
@@ -32,7 +29,10 @@
                 "command": "rm -rf build && mkdir -p build && cmake -B build .",
             },
             "windows": {
-                "command": "rmdir /s /q ${workspaceFolder}\\build",
+                "command": "rm -r build; rm -r CM4/build; rm -r CM7/build; mkdir build; cmake -B build -S . -G 'Ninja'",
+            },
+            "linux": {
+                "command": "rm -rf build && mkdir -p build && cmake -B build ."
             },
             "group": {
                 "kind": "build",
@@ -40,9 +40,6 @@
             },
             "detail": "Perform a clean build"
         },
-
-
-
         {
             "label": "Flash CM4",
             "type": "shell",
@@ -52,13 +49,11 @@
                 "${workspaceFolder}/CM4/build/WheelBaseSensorSystem_CM4.bin",
                 "0x08100000"
             ],
+            
             "group": "build",
             "problemMatcher": [],
             "detail": "Flash the CM4 binary to the STM32H755"
         },
-
-        
-
         {
             "label": "Flash CM7",
             "type": "shell",
@@ -72,9 +67,6 @@
             "problemMatcher": [],
             "detail": "Flash the CM7 binary to the STM32H755"
         },
-
-
-
         {
             "label": "Probe",
             "type": "shell",
@@ -85,7 +77,6 @@
             "problemMatcher": [],
             "detail": "List all STLink interfaces AND EXECUTE"
         },
-
         {
             "label": "Erase",
             "type": "shell",
@@ -96,13 +87,13 @@
             "problemMatcher": [],
             "detail": "FLASH CM4 AFTER THIS"
         },
-
         {
-            "label": "Run All CM7",
+            "label": "Run All",
             "type": "shell",
             "dependsOn": [
                 "Clean Build",
                 "Build All",
+                "Flash CM4",
                 "Flash CM7",
                 "Probe"
             ],
@@ -113,8 +104,6 @@
             },
             "problemMatcher": []
         }
-
         //openocd
-
     ]
 }
