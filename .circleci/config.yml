@@ -17,7 +17,14 @@ jobs:
               gcc-arm-none-eabi binutils-arm-none-eabi \
               libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
       - run:
-          name: Configure Cmake
+          name: Update CMake
+          command: |
+            sudo apt-get remove cmake
+            sudo apt-get install -y wget
+            wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-Linux-x86_64.sh
+            sudo sh cmake-3.24.0-Linux-x86_64.sh --skip-license --prefix=/usr/local
+      - run:
+          name: Configure CMake
           command: cmake -B build -G Ninja .
       - run:
           name: Build
