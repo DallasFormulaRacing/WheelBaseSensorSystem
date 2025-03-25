@@ -28,6 +28,7 @@ Since we are developing low-level C, we will loosely adhere to the Linux kernel 
 2. Make a pull request to merge your new branch into the default. If possible, make a draft PR beforehand.
 3. A pull request requires at least 1 approval from someone other than the author of the latest commit, and for all conversations to be resolved before merging can happen.
 4. Please make sure your solution builds before requesting a review from someone.
+5. Please squash minor commits.
 
 ## Commenting
 
