@@ -53,3 +53,5 @@ workflows:
               only:
                 - main
                 - feature/github-actions
+          requires:
+            - say-hello
