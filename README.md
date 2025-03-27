@@ -1,6 +1,6 @@
 # The Wheel Base Sensor System Repository
 
-![CircleCI](https://img.shields.io/circleci/build/github/DallasFormulaRacing/WheelBaseSensorSystem?style=flat-square)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/12HSJKR4Y3XJ4mMsZkizAh/PB9RMDcgrGtSuYaj64ENhc/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/12HSJKR4Y3XJ4mMsZkizAh/PB9RMDcgrGtSuYaj64ENhc/tree/main)
 ![Static Badge](https://img.shields.io/badge/fsae_season-2026-brightgreen?style=flat-square&logoColor=8A2BE2&color=8A2BE2) ![Static Badge](https://img.shields.io/badge/deadline-dec_2025-brightgreen?style=flat-square&color=655991) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/DallasFormulaRacing/WheelBaseSensorSystem/main?style=flat-square) ![Static Badge](https://img.shields.io/badge/H7-5e5e5e?style=flat-square&logo=stmicroelectronics)
 
 ## Overview
