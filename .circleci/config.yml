@@ -1,14 +1,6 @@
 version: 2.1
 
 jobs:
-  say-hello:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: Say Hello
-          command: echo "Hello, CircleCI!"
-
   build:
     docker:
       - image: cimg/base:stable  # Base Ubuntu image (22.04 compatible)
@@ -46,12 +38,9 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - say-hello
       - build:
           filters:
             branches:
               only:
                 - main
                 - feature/github-actions
-          requires:
-            - say-hello
