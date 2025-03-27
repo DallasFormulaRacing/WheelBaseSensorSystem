@@ -45,3 +45,4 @@ workflows:
               only:
                 - main
                 - feature/github-actions
+                - /current-branch/
