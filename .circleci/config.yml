@@ -16,6 +16,16 @@ jobs:
               libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
 
       - run:
+          name: Update CMake to 3.22
+          command: |
+            sudo apt-get remove --purge --auto-remove cmake
+            sudo apt-get install -y wget
+            wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.sh
+            sudo mkdir /opt/cmake
+            sudo sh cmake-3.22.0-linux-x86_64.sh --prefix=/opt/cmake --skip-license
+            sudo ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
+
+      - run:
           name: Configure CMake
           command: cmake -B build -G Ninja .
 
