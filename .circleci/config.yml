@@ -1,51 +1,16 @@
 version: 2.1
 
 jobs:
-  build:
+  say-hello:
     docker:
-      - image: cimg/base:stable  # Base Ubuntu image (22.04 compatible)
+      - image: cimg/base:stable
     steps:
-      - checkout
-
       - run:
-          name: Install Tools
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y --no-install-recommends \
-              gcc-arm-none-eabi binutils-arm-none-eabi \
-              libstdc++-arm-none-eabi-newlib cmake ninja-build make stlink-tools
-
-      - run:
-          name: Update CMake to 3.22
-          command: |
-            sudo apt-get remove --purge --auto-remove cmake
-            sudo apt-get install -y wget
-            wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.sh
-            sudo mkdir /opt/cmake
-            sudo sh cmake-3.22.0-linux-x86_64.sh --prefix=/opt/cmake --skip-license
-            sudo ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
-
-      - run:
-          name: Configure CMake
-          command: cmake -B build -G Ninja .
-
-      - run:
-          name: Build Firmware
-          command: cmake --build build --parallel
-
-      - persist_to_workspace:
-          root: .
-          paths:
-            - CM4/build/WheelBaseSensorSystem_CM4.elf
-            - CM7/build/WheelBaseSensorSystem_CM7.elf
+          name: Say Hello
+          command: echo "Hello, CircleCI!"
 
 workflows:
   version: 2
-  build-on-commit:
+  hello-workflow:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - main
-                - feature/github-actions
+      - say-hello
