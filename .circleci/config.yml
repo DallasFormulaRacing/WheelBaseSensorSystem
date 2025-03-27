@@ -1,24 +1,47 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
-      - image: cimg/node:18.17
+      - image: cimg/base:stable  # Ubuntu-based, minimal base image
     steps:
       - checkout
+
       - run:
-          name: Install Dependencies
-          command: npm install
+          name: Install Dependencies and Latest CMake
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends \
+              gcc-arm-none-eabi binutils-arm-none-eabi \
+              libstdc++-arm-none-eabi-newlib ninja-build make stlink-tools \
+              apt-transport-https ca-certificates gnupg software-properties-common
+            sudo apt-get purge --auto-remove cmake
+            sudo apt-key adv --fetch-keys https://apt.kitware.com/keys/kitware-archive-latest.asc
+            sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ jammy main'
+            sudo apt-get update
+            sudo apt-get install -y cmake
+
       - run:
-          name: Run Tests
-          command: npm test
+          name: Configure CMake
+          command: cmake -B build -G Ninja .
+
+      - run:
+          name: Build Firmware
+          command: cmake --build build --parallel
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - CM4/build/WheelBaseSensorSystem_CM4.elf
+            - CM7/build/WheelBaseSensorSystem_CM7.elf
 
 workflows:
   version: 2
-  test_current_branch:
+  build-on-commit:
     jobs:
-      - test:
+      - build:
           filters:
             branches:
-              only: 
-                - "<< pipeline.git.branch >>"
+              only:
+                - main
+                - feature/github-actions
